@@ -17,7 +17,7 @@ import * as schema from './db/schema'
                 return db;
             },
             inject: [ConfigService]
-        }
+        },
     ],
     exports: ['DRIZZLE'],
 
