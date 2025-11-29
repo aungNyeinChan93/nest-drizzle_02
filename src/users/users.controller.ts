@@ -3,6 +3,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateProfileDto } from './dto/create-profile.dto';
 
 @Controller('users')
 export class UsersController {
@@ -16,6 +17,16 @@ export class UsersController {
   @Get()
   findAll() {
     return this.usersService.findAll();
+  }
+
+  @Post('profiles')
+  createProfile(@Body() createProfileDto: CreateProfileDto) {
+    return this.usersService.createProfile(createProfileDto)
+  }
+
+  @Get('profiles')
+  getAllProifiles() {
+    return this.usersService.profiles();
   }
 
   @Get(':id')
@@ -32,4 +43,6 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }
+
+
 }

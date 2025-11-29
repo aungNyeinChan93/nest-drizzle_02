@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DrizzleModule } from './drizzle/drizzle.module';
 import { UsersModule } from './users/users.module';
+import { QuotesModule } from './quotes/quotes.module';
 
 @Module({
   controllers: [AppController],
@@ -16,7 +17,8 @@ import { UsersModule } from './users/users.module';
       isGlobal: true
     }),
     DrizzleModule,
-    UsersModule
+    UsersModule,
+    QuotesModule
   ],
 })
 export class AppModule { }

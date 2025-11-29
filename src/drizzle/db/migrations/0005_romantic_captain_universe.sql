@@ -1,0 +1,1 @@
+CREATE INDEX "quote_index" ON "quotes" USING btree ("quote");

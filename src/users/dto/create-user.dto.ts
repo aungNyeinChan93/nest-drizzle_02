@@ -20,6 +20,9 @@ export class CreateUserDto implements User {
     @IsStrongPassword()
     password: string;
 
+    @IsNotEmpty()
+    role: 'user' | 'admin' | 'guest';
+
     @IsOptional()
     created_at: Date;
 
