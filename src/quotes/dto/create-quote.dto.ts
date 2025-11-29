@@ -22,4 +22,7 @@ export class CreateQuoteDto implements Quote {
 
     @IsOptional()
     isActive: boolean | null;
+
+    @IsOptional()
+    categoryId: string
 }

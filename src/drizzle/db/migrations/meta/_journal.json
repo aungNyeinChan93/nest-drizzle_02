@@ -50,6 +50,13 @@
       "when": 1764386977938,
       "tag": "0006_nasty_katie_power",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1764398309707,
+      "tag": "0007_purple_kang",
+      "breakpoints": true
     }
   ]
 }

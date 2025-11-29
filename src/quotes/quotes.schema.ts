@@ -9,6 +9,7 @@ import { boolean } from "drizzle-orm/pg-core";
 import { timestamp } from "drizzle-orm/pg-core";
 import { uuid } from "drizzle-orm/pg-core";
 import { pgTable } from "drizzle-orm/pg-core";
+import { categoryQuoteTable } from "src/categories/categories-schema";
 import { userTable } from "src/users/users.schema";
 
 
@@ -23,9 +24,10 @@ export const quoteTable = pgTable('quotes', {
     quoteIndex: index('quote_index').on(table?.quote)
 }))
 
-export const quoteRelation = relations(quoteTable, ({ one }) => ({
+export const quoteRelation = relations(quoteTable, ({ one, many }) => ({
     user: one(userTable, {
         fields: [quoteTable?.author_id],
         references: [userTable?.id]
-    })
+    }),
+    categoryQuote: many(categoryQuoteTable)
 }))

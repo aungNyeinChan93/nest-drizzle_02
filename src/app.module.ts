@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DrizzleModule } from './drizzle/drizzle.module';
 import { UsersModule } from './users/users.module';
 import { QuotesModule } from './quotes/quotes.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   controllers: [AppController],
@@ -18,7 +19,8 @@ import { QuotesModule } from './quotes/quotes.module';
     }),
     DrizzleModule,
     UsersModule,
-    QuotesModule
+    QuotesModule,
+    CategoriesModule
   ],
 })
 export class AppModule { }

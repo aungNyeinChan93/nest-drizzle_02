@@ -20,7 +20,7 @@ export class QuotesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.quotesService.findOne(+id);
+    return this.quotesService.findOne(id);
   }
 
   @Patch(':id')
