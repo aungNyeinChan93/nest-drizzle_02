@@ -6,6 +6,7 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import * as schema from './categories-schema'
 import { eq } from 'drizzle-orm';
+import { CreateCategoryAndQuote } from './types/categories-types';
 @Injectable()
 export class CategoriesService {
 
@@ -59,5 +60,12 @@ export class CategoriesService {
   async remove(id: string) {
     const [deleteCategory] = await this.db.delete(categoryTable).where(eq(categoryTable?.id, id)).returning();
     return `${deleteCategory?.name} was successfully deleted!`
+  }
+
+  async createCategoryWithQuote(createCategoryQuote: CreateCategoryAndQuote) {
+    const [categoryQuote] = await this.db.insert(schema.categoryQuoteTable)
+      .values({ category_id: createCategoryQuote?.categoryId, quote_id: createCategoryQuote?.quoteId })
+      .returning();
+    return categoryQuote;
   }
 }

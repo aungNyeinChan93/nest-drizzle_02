@@ -9,14 +9,14 @@ import { uuid } from "drizzle-orm/pg-core";
 import { pgTable } from "drizzle-orm/pg-core";
 import { quoteTable } from "src/quotes/quotes.schema";
 
-export const UserRole = pgEnum('userRoles', ['user', 'admin', 'guest'])
+export const userRole = pgEnum('userRole', ['user', 'admin', 'guest'])
 
 export const userTable = pgTable('users', {
     id: uuid().primaryKey().defaultRandom(),
     name: text('name').notNull(),
     email: text('email').notNull().unique(),
     password: text('password').notNull(),
-    role: UserRole('role').notNull().default('guest'),
+    role: userRole('role').default('guest'),
     created_at: timestamp().defaultNow().notNull(),
     updated_at: timestamp().$onUpdate(() => new Date())
 }, (table) => ({

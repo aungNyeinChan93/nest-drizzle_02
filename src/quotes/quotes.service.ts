@@ -17,17 +17,20 @@ export class QuotesService {
   ) { }
 
   async create(createQuoteDto: CreateQuoteDto) {
-    const [quote] = await this.db.insert(schema?.quoteTable)
-      .values({ ...createQuoteDto })
-      .returning();
+    const result = await this.db.transaction(async (db) => {
+      const [quote] = await db.insert(schema?.quoteTable)
+        .values({ ...createQuoteDto })
+        .returning();
 
-    if (createQuoteDto?.categoryId) {
-      await this.db.insert(categoryQuoteTable).values({
-        quote_id: quote?.id,
-        category_id: createQuoteDto?.categoryId
-      })
-    }
-    return quote;
+      if (createQuoteDto?.categoryId) {
+        await db.insert(categoryQuoteTable).values({
+          quote_id: quote?.id,
+          category_id: createQuoteDto?.categoryId
+        })
+      }
+      return quote;
+    });
+    return result;
   }
 
   async findAll() {

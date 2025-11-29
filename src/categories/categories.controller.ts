@@ -3,6 +3,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { type CreateCategoryAndQuote } from './types/categories-types';
 
 @Controller('categories')
 export class CategoriesController {
@@ -16,6 +17,11 @@ export class CategoriesController {
   @Get()
   findAll() {
     return this.categoriesService.findAll();
+  }
+
+  @Post('create-quote')
+  createCategoryWithQuote(@Body() createCategoryQuote: CreateCategoryAndQuote) {
+    return this.categoriesService.createCategoryWithQuote(createCategoryQuote)
   }
 
   @Get(':id')
@@ -32,4 +38,5 @@ export class CategoriesController {
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(id);
   }
+
 }
